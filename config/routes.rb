@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   root 'project#project'
   
   get 'project/project' => 'project#project'
+  get 'project/profile' => 'project#profile'
+  
+  get 'project/create_profile' => 'project#create_profile'
+  post 'project/add_profile' => 'project#add_profile'
+  
+  post 'project/comment_write' => 'project#comment_write'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

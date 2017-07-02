@@ -1,0 +1,6 @@
+<h2>프로필등록</h2>
+<form action = "/project/add_profile" method ="post">
+    <input type ="hidden" name ="user_id" value ="<%=current_user.id%>">
+    이름 : <input type ="text" name="name">
+    <button type ="submit">프로필 생성</button><br>
+</form>
