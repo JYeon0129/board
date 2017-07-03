@@ -1,0 +1,26 @@
+<h2><%=current_user.email%>님의 프로필</h2>
+<a href ="/project/project">프로젝트 보기</a><br>
+<%if !current_user.profile %>
+    <form action = "/project/create_profile" method ="post">
+        <input type ="hidden" name ="user_id" value ="<%=current_user.id%>">
+        이름 : <input type ="text" name="name">
+        <button type ="submit">프로필 생성</button><br>
+    </form>
+<%else%>
+    <%@profile.each do |p|%>
+        이름 : <%=p.name%><br>
+        ---------------------------------------<br>
+        <% p.comments.each do |c|%>
+            -> <%=c.contents%><br>
+        <%end%>
+        ---------------------------------------------<br>
+        댓글<br>
+        <form action ="/project/create_comment" method ="post">
+            <input type ="hidden" name ="user_id" value ="<%=current_user.id%>">
+            <input type ="hidden" name ="commentable_type" value ="Profile">
+            <input type ="hidden" name ="commentable_id" value ="<%=p.id%>">
+            <input type ="text" name ="contents">
+            <button type ="submit">댓글달기</button>
+        </form>
+    <%end%>
+<%end%>

@@ -1,0 +1,7 @@
+<h2>프로젝트 생성</h2>
+<form action ="/project/real_create_project" method ="post">
+    <input type ="hidden" name ="user_id" value ="<%=current_user.id%>">
+    title : <input type ="text" name ="title"><br>
+    content : <input type ="text" name ="contents"><br>
+    <button type ="submit">등록하기</button>
+</form>

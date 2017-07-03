@@ -1,1 +1,28 @@
 <h1>프로젝트 페이지</h1>
+
+<% if user_signed_in?%>
+    <a href = "/project/profile">프로필 보기</a><br>
+    <a href = "/project/create_project">프로젝트 생성</a><br>
+    -------------------------------------------------<br>
+    <h3>프로젝트 리스트</h3><br>
+    <%@project.each do |p|%>
+        작성자 : <%=p.user.email%><br>
+        제목 : <%=p.title%><br>
+        내용 : <%=p.contents%><br>
+        ---------------------------------------------<br>
+        <% p.comments.each do |c|%>
+            -> <%=c.contents%><br>
+        <%end%>
+        ---------------------------------------------<br>
+        댓글<br>
+        <form action ="/project/create_comment" method ="post">
+            <input type ="hidden" name ="user_id" value ="<%=current_user.id%>">
+            <input type ="hidden" name ="commentable_type" value ="Project">
+            <input type ="hidden" name ="commentable_id" value ="<%=p.id%>">
+            <input type ="text" name ="contents">
+            <button type ="submit">댓글달기</button>
+        </form>
+    <%end%>
+<%else%>
+    <a href = "/users/sign_in">로그인</a>
+<%end%>
